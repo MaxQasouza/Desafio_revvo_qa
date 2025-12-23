@@ -2,8 +2,8 @@
   "admin": {
     "username": "admin",
     "password": "sandbox24",
-    "usernameVazio": " ",
-    "passwordVazio": " "
+    "usernameVazio": "",
+    "passwordVazio": ""
   },
   "idiomas": {
     "portuguesBrasilLabel": "Português - Brasil (pt_br)",

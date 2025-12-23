@@ -20,7 +20,6 @@ describe('Login e configurações do Administrador', () => {
   it('Validação de campo Senha vazia', () => {
     cy.fixture('usuario').then(({ admin }) => {
       cy.realizarLogin(admin.username, admin.passwordVazio)
-      cy.get('button#loginbtn').click()
       cy.validarErroLogin()
     })
   })

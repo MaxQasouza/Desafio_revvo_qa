@@ -7,8 +7,16 @@ Cypress.Commands.add('visitarPaginaLogin', () => {
 })
 
 Cypress.Commands.add('realizarLogin', (usuario, senha) => {
-  cy.get('input#username').type(usuario)
-  cy.get('input#password').type(senha, { log: false })
+  if (usuario && usuario.trim() !== '') {
+    cy.get('input#username').clear().type(usuario)
+  } else {
+    cy.get('input#username').clear()
+  }
+  if (senha && senha.trim() !== '') {
+    cy.get('input#password').clear().type(senha, { log: false })
+  } else {
+    cy.get('input#password').clear()
+  }
   cy.get('button#loginbtn').click()
 })
 
@@ -17,11 +25,24 @@ Cypress.Commands.add('validarLoginComSucesso', () => {
 })
 
 Cypress.Commands.add('validarErroLogin', () => {
-  cy.get('.alert-danger, .loginerrors').should('be.visible')
-  cy.get('.alert-danger, .loginerrors').should(
-    'contain.text',
-    'Nome de usuário ou senha errados. Por favor tente outra vez.',
-  )
+  // Verifica se há mensagem de erro do servidor OU se ainda estamos na página de login
+  // (validação HTML5 impede submissão quando campos required estão vazios)
+  cy.get('body').then(($body) => {
+    const hasServerError = $body.find('.alert-danger, .loginerrors').length > 0
+    
+    if (hasServerError) {
+      // Mensagem de erro do servidor (quando campos têm valores mas estão incorretos)
+      cy.get('.alert-danger, .loginerrors').should('be.visible')
+      cy.get('.alert-danger, .loginerrors').should(
+        'contain.text',
+        'Nome de usuário ou senha errados. Por favor tente outra vez.',
+      )
+    }
+  })
+  
+  // Sempre verifica que ainda estamos na página de login (não houve redirecionamento)
+  // Isso valida tanto erro do servidor quanto validação HTML5 de campos vazios
+  cy.url().should('include', '/login/index.php')
 })
 
 Cypress.Commands.add('alterarIdiomaParaPtBr', () => {

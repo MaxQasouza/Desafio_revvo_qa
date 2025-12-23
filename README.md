@@ -52,6 +52,25 @@ desafio_revvo_qa/
 - Node.js LTS (versão 18 ou superior)
 - npm ou yarn
 - Git
+- **Java JDK 11 ou superior** (requerido para gerar relatórios Allure)
+
+### Instalação do Java (Windows)
+
+1. **Baixe o JDK**: 
+   - Acesse [Eclipse Temurin](https://adoptium.net/) (recomendado) ou [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)
+   - Baixe a versão **JDK 11 ou superior** para Windows (x64)
+
+2. **Instale o Java**: Execute o instalador e siga as instruções
+
+3. **Configure as variáveis de ambiente** (se não configurado automaticamente):
+   - Abra "Variáveis de Ambiente" no Windows
+   - Adicione `JAVA_HOME` apontando para a pasta de instalação (ex: `C:\Program Files\Eclipse Adoptium\jdk-17.0.x-hotspot`)
+   - Adicione `%JAVA_HOME%\bin` à variável `Path`
+
+4. **Verifique a instalação**:
+   ```powershell
+   java -version
+   ```
 
 ## 📦 Instalação
 
