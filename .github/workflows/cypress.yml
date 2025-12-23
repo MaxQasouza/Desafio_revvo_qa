@@ -67,11 +67,3 @@ jobs:
           path: allure-results
           retention-days: 7
 
-      - name: Publicar relatório Allure
-        if: always()
-        uses: simple-elf/allure-report-action@master
-        with:
-          allure_results: allure-results
-          allure_history: allure-report/history
-          keep_reports: 20
-
