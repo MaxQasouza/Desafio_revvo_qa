@@ -31,12 +31,15 @@ Cypress.Commands.add('validarErroLogin', () => {
     const hasServerError = $body.find('.alert-danger, .loginerrors').length > 0
     
     if (hasServerError) {
-      // Mensagem de erro do servidor (quando campos têm valores mas estão incorretos)
+      // Valida que há uma mensagem de erro visível e contém uma das mensagens esperadas
       cy.get('.alert-danger, .loginerrors').should('be.visible')
-      cy.get('.alert-danger, .loginerrors').should(
-        'contain.text',
-        'Nome de usuário ou senha errados. Por favor tente outra vez.',
-      )
+      cy.get('.alert-danger, .loginerrors').should(($el) => {
+        const text = $el.text().trim()
+        // Regex para validar mensagens em português ou inglês (escapa pontos literalmente)
+        const regex = /(Invalid login, please try again|Nome de usuário ou senha errados\. Por favor tente outra vez\.)/
+        const isValid = regex.test(text)
+        expect(isValid, `Mensagem de erro esperada não encontrada. Recebido: "${text}"`).to.be.true
+      })
     }
   })
   
