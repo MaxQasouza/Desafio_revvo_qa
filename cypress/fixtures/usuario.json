@@ -1,0 +1,19 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "sandbox24",
+    "usernameVazio": " ",
+    "passwordVazio": " "
+  },
+  "idiomas": {
+    "portuguesBrasilLabel": "Português - Brasil (pt_br)",
+    "portuguesBrasilValue": "pt_br"
+  },
+  "curso": {
+    "nomeCompleto": "Desafio Revvo QA",
+    "nomeCurto": "DR-QA",
+    "idNumericoValido": "12345"
+  }
+}
+
+
